@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      background-color: aqua;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+    }
+    .title {
+      width: 100%;
+      height: 50px;
+      color: black;
+      background-color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+    }
+    .team1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 35%;
+    }
+    .team2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 35%;
+    }
+    img {
+      width: 250px;
+      height: 250px;
+    }
+    button {
+      width: 100px;
+      height: 40px;
+      font-size: larger;
+    }
+    h2 {
+      font-size: xx-large;
+    }
+    #reset {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 30%;
+    }
+    #gif{
+      width: 370px;
+      height: 250px;
+    }
+  </style>
+
+  <body>
+    <script>
+      var gameOn = true;
+      var gl1 = 0;
+      var fl1 = 0;
+      var gl2 = 0;
+      var fl2 = 0;
+      function congrats() {
+        if (gl1<gl2) {
+          alert("Liverpool won!")
+        } else if(gl1>gl2){
+          alert("Manchester City Won!")
+        }else{
+          alert("Draw, they both held on.")
+        }
+      }
+      function gametimer() {
+        setTimeout(() => {
+          document.getElementById("gif").hidden=false
+          gameOn = false;
+          congrats()
+        }, 30000);
+      }
+      gametimer()
+      function addFoul(id) {
+        if (gameOn) {
+          let goal1;
+          if (id === "fl1") {
+            fl1++;
+            goal1 = fl1;
+          } else {
+            fl2++;
+            goal1 = fl2;
+          }
+
+          document.getElementById(id).innerHTML = goal1.toString();
+        }
+      }
+      function addGoal(id) {
+        if (gameOn) {
+          let goal1;
+          if (id === "gl1") {
+            gl1++;
+            goal1 = gl1;
+          } else {
+            gl2++;
+            goal1 = gl2;
+          }
+
+          document.getElementById(id).innerHTML = goal1.toString();
+        }
+      }
+      function reset(id1, id2, id3, id4) {
+        gl1=0
+        gl2=0
+        gl3=0
+        gl4=0
+        document.getElementById("gif").hidden=true
+        document.getElementById(id1).innerHTML = "0";
+        document.getElementById(id2).innerHTML = "0";
+        document.getElementById(id3).innerHTML = "0";
+        document.getElementById(id4).innerHTML = "0";
+        gameOn=true
+        gl1,gl2,fl1,fl2=0,0,0,0
+        gametimer()
+      }
+    </script>
+    <div>
+      <h1 class="title">Scorekeeper</h1>
+    </div>
+    <div class="container">
+      <div class="team1">
+        <img src="./img3.png" alt="" />
+        <h2>Manchester city</h2>
+        <h2 id="gl1">0</h2>
+        <button onclick="addGoal('gl1')">goal</button>
+        <h2 id="fl1">0</h2>
+        <button onclick="addFoul('fl1')">foul</button>
+      </div>
+      <div id="reset">
+        <img hidden id="gif" src="./congrats.gif" alt="" />
+        <button onclick="reset('gl1','gl2','fl1','fl2')">reset</button>
+      </div>
+      <div class="team2">
+        <img src="./img4.png" alt="" />
+        <h2>Liverpool</h2>
+        <h2 id="gl2">0</h2>
+        <button onclick="addGoal('gl2')">goal</button>
+        <h2 id="fl2">0</h2>
+        <button onclick="addFoul('fl2')">foul</button>
+      </div>
+    </div>
+  </body>
+</html>
