@@ -71,6 +71,7 @@
       var fl1 = 0;
       var gl2 = 0;
       var fl2 = 0;
+      var btn_reset=document.getElementById("resetbtn")
       function congrats() {
         if (gl1<gl2) {
           alert("Liverpool won!")
@@ -119,13 +120,11 @@
       function reset(id1, id2, id3, id4) {
         gl1=0
         gl2=0
-        gl3=0
-        gl4=0
+        fl1=0
+        fl2=0
+        var ids=[id1,id2,id3,id4]
         document.getElementById("gif").hidden=true
-        document.getElementById(id1).innerHTML = "0";
-        document.getElementById(id2).innerHTML = "0";
-        document.getElementById(id3).innerHTML = "0";
-        document.getElementById(id4).innerHTML = "0";
+        ids.forEach(id => document.getElementById(id).innerHTML="0")
         gameOn=true
         gl1,gl2,fl1,fl2=0,0,0,0
         gametimer()
@@ -145,7 +144,7 @@
       </div>
       <div id="reset">
         <img hidden id="gif" src="./congrats.gif" alt="" />
-        <button onclick="reset('gl1','gl2','fl1','fl2')">reset</button>
+        <button id="resetbtn" onclick="reset('gl1','gl2','fl1','fl2')">reset</button>
       </div>
       <div class="team2">
         <img src="./img4.png" alt="" />
