@@ -118,7 +118,8 @@
         }
       }
       function reset(id1, id2, id3, id4) {
-        gl1=0
+        if (!gameOn) {
+          gl1=0
         gl2=0
         fl1=0
         fl2=0
@@ -128,6 +129,9 @@
         gameOn=true
         gl1,gl2,fl1,fl2=0,0,0,0
         gametimer()
+        }else{
+          alert("The game must go on!")
+        }
       }
     </script>
     <div>
